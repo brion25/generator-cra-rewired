@@ -1,6 +1,6 @@
 {
   "name": "generator-cra-rewired",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Scaffolding of a React App using the same approach as the Facebook team uses, but giving the user the opportunity  to add his own configuration",
   "homepage": "",
   "author": {
