@@ -1,0 +1,20 @@
+.app {
+  width: 30em;
+  background: yellow;
+  padding: 1em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: monospace;
+
+  h2 {
+    text-transform: capitalize;
+    font-size: 2em;
+  }
+
+  .version:before {
+    content: 'Version: '
+  }
+}

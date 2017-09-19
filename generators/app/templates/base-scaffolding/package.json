@@ -3,7 +3,19 @@
   "version": "<%= version %>",
   "description": "<%= description %>",
   "dependencies": {
+    <% if (style === 'SASS') { %>
+    "react-app-rewire-sass": "^1.2.3",
+    <% } %>
+    <% if (style === 'LESS') { %>
+    "react-app-rewire-less": "^2.0.7",
+    <% } %>
+    <% if (usePreact) { %>
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0",
+    "react-app-rewire-preact": "^1.0.1",
+    <% } else { %>
     "react": "^15.6.1",
+    <% } %>
     "react-dom": "^15.6.1"
   },
   "devDependencies": {

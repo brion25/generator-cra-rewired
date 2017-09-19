@@ -28,6 +28,22 @@ module.exports = class extends Generator {
         name: 'version',
         message: 'Enter your project version',
         default: '0.0.1'
+      },
+      {
+        type: 'list',
+        name: 'style',
+        message: 'Do you want an special configuration for your styles?',
+        choices: [
+          'SCSS',
+          'LESS',
+          'CSS'
+        ]
+      },
+      {
+        type: 'confirm',
+        name: 'usePreact',
+        message: 'Would you like to use Preact instead of React?',
+        default: false
       }
     ];
 
@@ -38,15 +54,27 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    const STYLE_NAME = `app.${this.props.style.toLowerCase()}`
+
+    this.log('Creating basic scaffolding')
+
     this.fs.copyTpl(
-      this.templatePath('**/*'),
+      this.templatePath('base-scaffolding/**/*'),
       this.destinationPath(this.props.name),
       this.props
+    );
+
+    return this.fs.copy(
+      this.templatePath(`styles/${STYLE_NAME}`),
+      this.destinationPath(`${this.props.name}/src/${STYLE_NAME}`)
     );
   }
 
   install() {
     process.chdir(this.props.name);
+
+    this.log('Installing dependencies');
+
     this.npmInstall();
   }
 };
