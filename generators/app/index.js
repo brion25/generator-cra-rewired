@@ -42,7 +42,7 @@ module.exports = class extends Generator {
       this.templatePath('**/*'),
       this.destinationPath(this.props.name),
       this.props
-    )
+    );
   }
 
   install() {
