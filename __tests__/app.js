@@ -9,7 +9,8 @@ describe('generator-cra-rewired:app', () => {
       .withPrompts({
         name: 'awesome-project',
         description: 'Super awesome project',
-        version: '9.0.1'
+        version: '9.0.1',
+        style: 'CSS'
       });
   });
 
@@ -17,10 +18,8 @@ describe('generator-cra-rewired:app', () => {
     assert.file([
       'package.json',
       'config-overrides.js',
-      'src/index.js',
-      'public/favicon.ico',
-      'public/index.html',
-      'public/manifest.json'
+      'src',
+      'public'
     ]);
   });
 

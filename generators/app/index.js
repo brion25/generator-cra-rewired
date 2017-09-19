@@ -3,6 +3,8 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 
+const getPackageJSON = require('./getPackageJSON');
+
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
@@ -54,14 +56,19 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    const STYLE_NAME = `app.${this.props.style.toLowerCase()}`
+    const STYLE_NAME = `app.${this.props.style.toLowerCase()}`;
 
-    this.log('Creating basic scaffolding')
+    this.log('Creating basic scaffolding');
 
     this.fs.copyTpl(
       this.templatePath('base-scaffolding/**/*'),
       this.destinationPath(this.props.name),
       this.props
+    );
+
+    this.fs.writeJSON(
+      this.destinationPath(`${this.props.name}/package.json`),
+      getPackageJSON(this.props)
     );
 
     return this.fs.copy(
@@ -73,7 +80,7 @@ module.exports = class extends Generator {
   install() {
     process.chdir(this.props.name);
 
-    this.log('Installing dependencies');
+    // This.log('Installing dependencies');
 
     this.npmInstall();
   }
