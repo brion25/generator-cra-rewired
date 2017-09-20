@@ -10,13 +10,14 @@ const baseBackage = {
 };
 
 module.exports = function (opts) {
+  const {style, usePreact, name, version, description} = opts;
   let pkg = {
-    name: opts.name,
-    version: opts.version,
-    description: opts.description
+    name: name,
+    version: version,
+    description: description
   };
 
-  switch (opts.style) {
+  switch (style) {
     case 'SCSS':
       pkg = Object.assign(pkg, baseBackage, {
         dependencies: {
@@ -35,7 +36,7 @@ module.exports = function (opts) {
       pkg = Object.assign(pkg, baseBackage);
   }
 
-  if (opts.usePreact) {
+  if (usePreact) {
     pkg = Object.assign(pkg, baseBackage, {
       dependencies: Object.assign({}, pkg.dependencies, {
         preact: '^8.2.5',
